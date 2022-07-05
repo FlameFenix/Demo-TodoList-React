@@ -1,6 +1,18 @@
+import { useEffect, useState } from "react";
 import { TodoItem } from "./TodoItem";
 
 export const TodoList = () => {
+    const [todos, setTodos] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:3030/jsonstore/todos')
+            .then(res => res.json())
+            .then(result => {
+                console.log(Object.values(result));
+                setTodos(Object.values(result));
+            })
+    }, []);
+
     return (
         <section className="todo-list-container">
             <h1>Todo List</h1>
@@ -18,15 +30,7 @@ export const TodoList = () => {
                     </thead>
                     <tbody>
 
-                        <TodoItem title="Give dog a bath" isComplete="Complete" />
-                        <TodoItem title="Do laundry" isComplete="Complete" />
-                        <TodoItem title="Vacuum floor" isComplete="Incomplete" />
-                        <TodoItem title="Feed cat" isComplete="Complete" />
-                        <TodoItem title="Change light bulbs" isComplete="Incomplete" />
-                        <TodoItem title="Feed cat" isComplete="Complete" />
-                        <TodoItem title="Change light bulbs" isComplete="Incomplete" />
-                        <TodoItem title="Go to Store" isComplete="Complete" />
-                        <TodoItem title="Fill gas tank" isComplete="Incomplete" />
+                        {todos.map(x => <TodoItem key={x._id} {...x} />)};
 
                     </tbody>
                 </table>

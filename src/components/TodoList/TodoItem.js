@@ -1,13 +1,13 @@
 export const TodoItem = (props) => {
 
     function isComplete(isComplete) {
-        return isComplete === "Complete" ? "todo is-completed" : "todo";
+        return isComplete === true ? "todo is-completed" : "todo";
     }
 
     return (
-        <tr className={isComplete(props.isComplete)}>
+        <tr className={isComplete(props.IsComplete)}>
             <td>{props.title}</td>
-            <td>{props.isComplete}</td>
+            <td>{props.IsComplete === true ? "Complete" : "Incomplete"}</td>
             <td className="todo-action">
                 <button>Change status</button>
             </td>
