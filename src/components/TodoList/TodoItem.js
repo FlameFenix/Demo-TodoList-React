@@ -9,7 +9,7 @@ export const TodoItem = (props) => {
             <td>{props.title}</td>
             <td>{props.IsComplete === true ? "Complete" : "Incomplete"}</td>
             <td className="todo-action">
-                <button>Change status</button>
+                <button onClick={() => props.onClick(props)}>Change status</button>
             </td>
         </tr>
     );
